@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Questions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+  <div class="translucent-bg">
+    <h1 class="text-3xl font-bold text-center mb-6 text-gray-800">Ask Your Career Questions</h1>
+    <p class="mb-4 text-gray-700">Hey there! 👋 <strong>Thanks a ton for helping us build a custom dataset</strong> for fine-tuning Microsoft's Phi-3 model. We really appreciate your time and input. Just so you know, we're not collecting any personal data from you, so feel free to ask away!</p>
+    <p class="mb-4 text-gray-700">You can submit multiple questions at once by using the <strong>"Next"</strong> button, or you can submit the form as many times as you like. We're here to gather as much valuable input as possible.</p>
+    <p class="mb-4 text-gray-700">Curious about our hackathon idea? We've got you covered! Click <a href="https://drive.google.com/file/d/1cs_rzHQoiWiYLAMzYG8LAghaxtzaxUgj/view?usp=sharing" target="_blank" class="text-blue-500 hover:underline">here</a> to check out our idea submission presentation. It's a quick and interesting read that gives you a peek into what we're working on.</p>
+    <p class="mb-4 text-gray-700">And if you want to know more about the hackathon itself, just click <a href="https://kleos-production.netlify.app/home" target="_blank" class="text-blue-500 hover:underline">here</a>. It'll take you to the event's homepage where you can find all the details about the hackathon.</p>
+    <p class="mb-4 text-gray-700">Thanks again for your help, and happy questioning! 😊</p>
+    <label for="career-path" class="block text-lg font-medium mb-2 text-gray-700"><strong>Choose a Career Path:</strong></label>
+    <select id="career-path" class="block p-2 mb-4 border rounded-lg text-gray-700">
+      <option value="Data Analyst/Business Analyst">Data Analyst/Business Analyst</option>
+      <option value="AI/ML Engineer">AI/ML Engineer</option>
+      <option value="Software Developer">Software Developer</option>
+      <option value="Full Stack Web Developer">Full Stack Web Developer</option>
+    </select>
+    <div id="questions-container">
+      <label for="question-1" class="block text-lg font-medium mb-2 text-gray-700"><strong>Your Question 1:</strong></label>
+      <textarea id="question-1" rows="4" class="block p-2 mb-4 border rounded-lg text-gray-700"></textarea>
+    </div>
+    <div class="flex space-x-2">
+      <button id="next-btn" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors">Next</button>
+      <button id="reset-btn" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors">Reset</button>
+      <button id="submit-btn" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">Submit</button>
+    </div>
+  </div>  
+  <script type="module" src="/src/main.js"></script>
+  <script>
+    window.onload = () => {
+      document.getElementById('career-path').selectedIndex = 0;
+      document.getElementById('question-1').value = '';
+    };
+  </script>
+</body>
+</html>
