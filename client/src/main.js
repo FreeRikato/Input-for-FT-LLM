@@ -1,3 +1,21 @@
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getFirestore, collection, addDoc } from "firebase/firestore"; 
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyC6sq2jbQA3O2HFMfeb9ZMiSyTj3ZxRgBc",
+  authDomain: "input-for-finetuning-llm.firebaseapp.com",
+  projectId: "input-for-finetuning-llm",
+  storageBucket: "input-for-finetuning-llm.appspot.com",
+  messagingSenderId: "90789948118",
+  appId: "1:90789948118:web:575a337c8d74950d0ef777"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
 let questionCount = 1;
 
 document.getElementById('next-btn').addEventListener('click', () => {
@@ -36,27 +54,17 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
       questions.push({ career_path: careerPath, question: question });
     }
   }
-  // const base_url = "http://localhost:3000"
-  // const base_url = "http://192.168.0.51:3000"
-  const base_url = "https://input-for-ft-llm.onrender.com"
+
   if (questions.length > 0) {
     try {
-      const response = await fetch(`${base_url}/submit_questions`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ questions: questions })
-      });
-
-      if (response.ok) {
-        alert('Questions submitted successfully!');
-        document.getElementById('reset-btn').click();
-      } else {
-        alert('Failed to submit questions.');
+      for (const q of questions) {
+        await addDoc(collection(db, "questions"), q);
       }
+      alert('Questions submitted successfully!');
+      document.getElementById('reset-btn').click();
     } catch (error) {
-      alert('Failed to submit questions. Please check your network connection and try again.');
+      console.error("Error adding document: ", error);
+      alert('Failed to submit questions. Please try again.');
     }
   } else {
     alert('Please enter at least one question.');
