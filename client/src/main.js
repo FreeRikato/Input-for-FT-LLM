@@ -37,7 +37,8 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
     }
   }
   // const base_url = "http://localhost:3000"
-  const base_url = "http://192.168.0.51:3000"
+  // const base_url = "http://192.168.0.51:3000"
+  const base_url = "https://input-for-ft-llm.onrender.com"
   if (questions.length > 0) {
     try {
       const response = await fetch(`${base_url}/submit_questions`, {
